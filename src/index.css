@@ -33,3 +33,19 @@ iframe {
   border-radius: 12px;
 }
 
+button {
+  background-color: #3C3F44;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 9999px;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+button:hover {
+  background-color: #50545A;
+  transform: scale(1.03);
+}
+
