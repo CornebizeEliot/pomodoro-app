@@ -75,24 +75,26 @@ export default function PomodoroApp() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-[#2B2D31] text-white font-sans p-4 transition-colors duration-700">
-      <div className="bg-[#1E1F22] px-10 py-6 rounded-3xl shadow-lg mb-8">
-        <div className="text-7xl font-extrabold">{formatTime(time)}</div>
+    <div className="flex flex-col items-center justify-center text-center h-screen bg-[#2B2D31] text-white font-sans p-4 transition-colors duration-700">
+      <div className="bg-[#1E1F22] px-10 py-6 rounded-3xl shadow-lg mb-8 w-full max-w-xs">
+        <div className="text-7xl font-extrabold mt-4 mb-4">{formatTime(time)}</div>
       </div>
 
-      <button
-        onClick={() => setIsRunning(!isRunning)}
-        className="px-8 py-3 bg-[#4CAF50] hover:bg-[#43A047] text-white text-lg rounded-full shadow mb-4 transition-all"
-      >
-        {isRunning ? "Pause" : "Démarrer"}
-      </button>
+      <div className="flex gap-4 mb-4">
+        <button
+          onClick={() => setIsRunning(!isRunning)}
+          className="px-8 py-3 bg-[#4CAF50] hover:bg-[#43A047] text-white text-lg rounded-full shadow transition-all"
+        >
+          {isRunning ? "Pause" : "Démarrer"}
+        </button>
 
-      <button
-        onClick={toggleCoffeeBreak}
-        className={`px-6 py-2 ${isCoffeeBreak ? "bg-[#2196F3] hover:bg-[#1E88E5]" : "bg-[#FFC107] hover:bg-[#FFB300]"} text-white text-sm rounded-full shadow mb-2 transition-all duration-300`}
-      >
-        {isCoffeeBreak ? "🧠 Retour au travail" : "☕ Pause Café (5 min)"}
-      </button>
+        <button
+          onClick={toggleCoffeeBreak}
+          className={`px-6 py-2 ${isCoffeeBreak ? "bg-[#2196F3] hover:bg-[#1E88E5]" : "bg-[#FFC107] hover:bg-[#FFB300]"} text-white text-sm rounded-full shadow transition-all duration-300`}
+        >
+          {isCoffeeBreak ? "🧠 Retour au travail" : "☕ Pause Café (5 min)"}
+        </button>
+      </div>
 
       <div className="absolute bottom-6 right-6">
         <button
@@ -142,9 +144,9 @@ export default function PomodoroApp() {
       </div>
 
       <div className="mt-6 w-full max-w-md">
-        <div className="aspect-video mb-2">
+        <div className="aspect-video mb-4 rounded-xl overflow-hidden">
           <iframe
-            className="w-full h-full rounded-xl"
+            className="w-full h-full"
             src={musicEmbedUrl + `?autoplay=1&mute=${musicPlaying ? 0 : 1}`}
             title="Lofi music"
             frameBorder="0"
@@ -153,21 +155,23 @@ export default function PomodoroApp() {
           ></iframe>
         </div>
 
-        <div className="flex items-center justify-center gap-6 mb-2">
-          <Shuffle className="text-white opacity-70 hover:opacity-100 transition cursor-pointer" size={20} />
-          <SkipBack className="text-white opacity-70 hover:opacity-100 transition cursor-pointer" size={24} />
-          <button
-            onClick={toggleMusic}
-            className="w-14 h-14 bg-white text-black rounded-full shadow flex items-center justify-center transition hover:scale-105"
-          >
-            {musicPlaying ? <Pause size={28} /> : <Play size={28} />}
-          </button>
-          <SkipForward
-            onClick={changeMusic}
-            className="text-white opacity-70 hover:opacity-100 transition cursor-pointer"
-            size={24}
-          />
-          <Repeat className="text-white opacity-70 hover:opacity-100 transition cursor-pointer" size={20} />
+        <div className="w-full flex justify-center">
+          <div className="flex items-center justify-center gap-6 mb-2">
+            <Shuffle className="text-white opacity-70 hover:opacity-100 transition cursor-pointer" size={20} />
+            <SkipBack className="text-white opacity-70 hover:opacity-100 transition cursor-pointer" size={24} />
+            <button
+              onClick={toggleMusic}
+              className="w-14 h-14 bg-white text-black rounded-full shadow flex items-center justify-center transition hover:scale-105"
+            >
+              {musicPlaying ? <Pause size={28} /> : <Play size={28} />}
+            </button>
+            <SkipForward
+              onClick={changeMusic}
+              className="text-white opacity-70 hover:opacity-100 transition cursor-pointer"
+              size={24}
+            />
+            <Repeat className="text-white opacity-70 hover:opacity-100 transition cursor-pointer" size={20} />
+          </div>
         </div>
       </div>
     </div>
